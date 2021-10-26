@@ -27,3 +27,8 @@ exports.create = async (data) =>{
 
     }
 }
+
+exports.getUsers= async ()=>{
+    const users =await User.find();
+    return users;
+}
