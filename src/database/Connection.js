@@ -11,7 +11,7 @@ function connectToDatabase(){
     db.on("error", (error) => console.log("Erro ao conectar ao banco de dados: ", error.message));
 
     db.once("open", () => {
-        console.log("Conectado com o banco")
+
     });
 }
 module.exports = connectToDatabase;
