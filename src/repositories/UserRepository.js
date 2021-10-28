@@ -33,6 +33,22 @@ exports.read= async ()=>{
     return users;
 }
 
+exports.updatePassword = async (data)=>{
+    const md5 = require('md5');
+
+    try{
+        const user = await User.findByIdAndUpdate(data.id,{
+            $set:{
+                password: md5(data.password)
+            }
+        });
+        return true
+    }catch(error){
+        return false
+    }
+
+}
+
 exports.delete = async (id)=>{
     const resultado = await User.deleteOne({ _id:id });
 

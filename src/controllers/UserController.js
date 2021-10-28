@@ -20,6 +20,19 @@ exports.get = async (request, response) =>{
 
 }
 
+
+exports.put = async(request, response)=>{
+    const data = request.query;
+
+    const result = await repository.updatePassword(data)
+
+    if(result){
+        return response.status(201).json({message: "A senha foi alterada com sucesso"})
+    }else{
+        return response.status(400).json({message: "A senha não foi alterada com sucesso"})
+    }
+}
+
 exports.delete = async (request, response)=>{
     const {id} = request.query;
     
