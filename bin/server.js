@@ -6,8 +6,9 @@ const os = require('os');
 const PORT = 3000;
 
 
-app.listen(PORT);
-database();
+app.listen(PORT, () =>{
+    database();
+});
 
 const arch = os.arch()
 const plataform = os.platform()
