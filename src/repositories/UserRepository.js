@@ -12,7 +12,7 @@ exports.create = async (data) =>{
     } = data;
 
     const newUser = new User({
-        id: uuid(),
+        _id: uuid(),
         firstName,
         lastName,
         email,
@@ -28,7 +28,15 @@ exports.create = async (data) =>{
     }
 }
 
-exports.getUsers= async ()=>{
+exports.read= async ()=>{
     const users =await User.find();
     return users;
+}
+
+exports.delete = async (id)=>{
+    const resultado = await User.deleteOne({ _id:id });
+
+    let retorno = resultado.deletedCount == 0? false :true;
+
+    return retorno;
 }
