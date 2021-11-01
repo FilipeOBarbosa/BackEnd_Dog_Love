@@ -2,7 +2,7 @@
   "name": "doglove-backend",
   "version": "1.0.0",
   "description": "API-REST do sistema DogLove",
-  "main": "app.js",
+  "main": "./bin/Server.js",
   "scripts": {
     "dev": "nodemon bin/server.js",
     "start": "node bin/server.js"
