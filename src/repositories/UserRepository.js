@@ -1,6 +1,6 @@
 const {v4: uuid} = require('uuid');
 const User = require('../models/User')
-const md5 = require('md5')
+const vcsl = require('vcsl')
 
 class UserRepository{
 
@@ -18,7 +18,7 @@ class UserRepository{
             firstName,
             lastName,
             email,
-            password: md5(password)
+            password: vcsl.encrypt(password)
         });
         try{
             await newUser.save();
@@ -39,7 +39,7 @@ class UserRepository{
         try{
             const user = await User.findByIdAndUpdate(data.id,{
                 $set:{
-                    password: md5(data.password)
+                    password: vcsl.encrypt(data.password)
                 }
             });
             return true
