@@ -8,6 +8,7 @@ class UserRoute{
         router.get('/',controller.get);
         router.put('/',controller.put)
         router.delete('/',controller.delete);
+        router.post('/login',controller.login)
     }
 
     getRouter(){
