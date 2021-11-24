@@ -42,6 +42,16 @@ class UserController{
             return response.status(400).json({message: "usuário não foi excluído com sucesso"})
         }
     }
+
+    async login(request, response){
+        const data = request.body
+        const result = await repository.login(data)
+        if(result === undefined){
+            return response.status(401).json({message: "Login incorreto"})
+        }
+        return response.status(302).json(result)
+
+    }
 }
 
 module.exports= new UserController();
