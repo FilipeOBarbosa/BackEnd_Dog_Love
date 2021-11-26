@@ -96,6 +96,16 @@ class UserController{
         return response.status(302).json(user)
 
     }
+    validateToken(request, response){
+        const {token} =  request.headers
+        const isValid = tokenService.validateToken(token);
+
+        if(!isValid){
+            return response.status(401).json({message: 'Token inválido'})
+        }
+        return response.status(200).json({message: 'Token válido'})
+
+    }
 
 }
 

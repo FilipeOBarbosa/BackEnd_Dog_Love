@@ -12,6 +12,7 @@ class UserRoute{
         router.get('/get-by-id',controller.getById)
         router.post('/login',controller.login)
         router.post('/refresh-token', controller.refreshToken)
+        router.get('/validate-token', controller.validateToken)
     }
 
     getRouter(){

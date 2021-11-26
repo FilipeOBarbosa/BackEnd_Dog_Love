@@ -8,6 +8,10 @@ exports.generateToken = (data) => {
 }
 
 exports.validateToken = (token) =>{
-    const user = jwt.verify(token,SECRET)
-    return user;
+    try {
+        jwt.verify(token,SECRET)
+        return true;   
+    } catch (error) {
+        return false
+    }
 }
