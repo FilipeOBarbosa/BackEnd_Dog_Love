@@ -90,7 +90,10 @@ class UserController{
         const { id } = request.headers
         const user = await repository.getById(id) 
 
-        console.log(user)
+        if(!user){
+            return response.status(400).json({message: 'Não encontrado'})
+        }
+        return response.status(302).json(user)
 
     }
 
