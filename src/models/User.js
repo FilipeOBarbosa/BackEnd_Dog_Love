@@ -4,11 +4,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         required: true
     },
-    firstName:{
-        type:String,
-        required: true
-    },
-    lastName:{
+    name:{
         type:String,
         required: true
     },
@@ -20,6 +16,18 @@ const userSchema = new mongoose.Schema({
     password:{
         type:String,
         required: true
+    },
+    state:{
+        type:String,
+        required: false
+    },
+    city:{
+        type:String,
+        required: false
+    },
+    district:{
+        type:String,
+        required: false
     }
 });
 module.exports = mongoose.model("User", userSchema);

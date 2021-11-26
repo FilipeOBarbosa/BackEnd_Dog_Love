@@ -7,7 +7,7 @@ exports.generateToken = (data) => {
 
 }
 
-exports.authorize = (token) =>{
+exports.validateToken = (token) =>{
     const user = jwt.verify(token,SECRET)
     return user;
 }

@@ -2,30 +2,37 @@ const {v4: uuid} = require('uuid');
 const User = require('../models/User')
 const vcsl = require('vcsl')
 const tokenS = require('../services/TokenService')
+const log = require('../services/LogService')
 
 class UserRepository{
 
     async create(data){
         const {
-            firstName,
-            lastName,
+            name,
             email,
-            password
+            password,
+            state,
+            city,
+            district
     
         } = data;
     
         const newUser = new User({
             _id: uuid(),
-            firstName,
-            lastName,
+            name,
             email,
-            password: vcsl.encrypt(password)
+            password: vcsl.encrypt(password),
+            state,
+            city,
+            district
         });
         try{
             await newUser.save();
+            log('UserRepository/create','User criado com sucesso', true)
             return true;
     
         }catch(err){
+            log('UserRepository/create','Houve um erro na criação do user', false)
             return false;
     
         }
@@ -61,7 +68,6 @@ class UserRepository{
         const user = await User.findOne({ 
             email:data.email
         })
-        console.log(user)
         if(user == null){
             return undefined
         }
@@ -73,8 +79,7 @@ class UserRepository{
             const userResponse = {
                 token,
                 id: user._id,
-                firstName: user.firstName,
-                lastName: user.lastName,
+                name: user.name,
                 email: user.email
             }
             return userResponse
