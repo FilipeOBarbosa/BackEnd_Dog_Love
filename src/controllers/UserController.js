@@ -62,14 +62,6 @@ class UserController{
         return response.status(302).json(result)
     }
 
-    async getById(request, response){
-
-    }
-
-    async getByEmail(request, response){
-
-    }
-
     refreshToken(request, response){
         const data = request.body
 
@@ -92,6 +84,13 @@ class UserController{
             log('UserController/refreshToken','O token é inválido', false)
             return response.status(400).json({message: 'Token inválido'})
         }
+
+    }
+    async getById(request, response){
+        const { id } = request.headers
+        const user = await repository.getById(id) 
+
+        console.log(user)
 
     }
 

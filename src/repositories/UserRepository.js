@@ -85,6 +85,23 @@ class UserRepository{
             return userResponse
         }
     }
+
+    async getById(id){
+
+        const resultado = await User.findOne({
+            _id: id
+        })
+        const montarResult={
+            id:resultado._id,
+            name:resultado.name,
+            email:resultado.email,
+            state:resultado.state,
+            city:resultado.city,
+            district:resultado.district
+        }
+        return montarResult;
+
+    }
 }
 
 module.exports = new UserRepository();

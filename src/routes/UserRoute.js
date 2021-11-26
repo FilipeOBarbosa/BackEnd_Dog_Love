@@ -9,6 +9,7 @@ class UserRoute{
         router.get('/',authService.authorize,controller.get);
         router.put('/',authService.authorize,controller.put)
         router.delete('/',authService.authorize,controller.delete);
+        router.get('/get-by-id',controller.getById)
         router.post('/login',controller.login)
         router.post('/refresh-token', controller.refreshToken)
     }
