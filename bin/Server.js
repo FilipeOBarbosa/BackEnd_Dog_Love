@@ -4,7 +4,8 @@ function initServer(){
     const app = require('../src/App')
     const database = require('../src/database/Connection')
     const os = require('os');
-    const PORT = 3000;
+    const chalk = require('chalk');
+    const PORT = process.env.PORT || 3000;
 
     app.getApp().listen(PORT,async ()=>{
 
@@ -16,11 +17,11 @@ function initServer(){
         const mem = os.totalmem()
         const cpus = os.cpus()
 
-        console.log(`SERVICE RUNNING ON PORT: ${PORT}`)
-        console.log(`SO: ${type} ${plataform} ${arch}`)
-        console.log(`RAM: ${Math.floor(mem * (10 ** -9))} GB`)
-        console.log(`CORES: ${cpus.length}`)
-        console.log(`CPU: ${cpus[0].model}`)
+        console.log( chalk.bgBlue(chalk.black(` SERVICE RUNNING ON PORT: ${PORT} `)))
+        console.log( chalk.bgBlue(chalk.black(` SO: ${type} ${plataform} ${arch} `)))
+        console.log( chalk.bgBlue(chalk.black(` RAM: ${Math.floor(mem * (10 ** -9))} GB `)))
+        console.log( chalk.bgBlue(chalk.black(` CORES: ${cpus.length} `)))
+        console.log( chalk.bgBlue(chalk.black(` CPU: ${cpus[0].model} \n`)))
     })
 }
 
