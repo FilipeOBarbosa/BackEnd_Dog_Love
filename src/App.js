@@ -8,9 +8,8 @@ class App{
         const cors = require('cors')
 
         this.app = express();
-        
-        this.app.use(express.json())
         this.app.use(cors())
+        this.app.use(express.json())
 
         this.app.use('/user',userRoute.getRouter());
     }
