@@ -15,3 +15,7 @@ exports.validateToken = (token) =>{
         return false
     }
 }
+
+exports.decoteToken = (token) =>{
+    return jwt.verify(token,SECRET)
+}

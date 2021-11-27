@@ -51,6 +51,7 @@ class UserController{
     }
 
     async login(request, response){
+
         const data = request.body
         const result = await repository.login(data)
         if(result === undefined){
@@ -66,11 +67,10 @@ class UserController{
         const data = request.body
 
         try {
-            const oldToken = tokenService.validateToken(data.token);
-
+            const oldToken = tokenService.decoteToken(data.token);
             if(oldToken.userId === data._id){
                 log('UserController/refreshToken','Antigo token está válido', true)
-                return response.status(202).json({tokenValido: data.token})
+                return response.status(202).json({Old: data.token})
             }
             log('UserController/refreshToken','O token não pertence ao usuário informado', false)
             return response.status(401).json({message: 'Não autorizado'})
@@ -79,10 +79,10 @@ class UserController{
             if(error.name === 'TokenExpiredError'){
                 const newToken = tokenService.generateToken(data);
                 log('UserController/refreshToken','Um novo token foi criado', true)
-                return response.status(200).json({novoToken: newToken})
+                return response.status(201).json({new: newToken})
             }
             log('UserController/refreshToken','O token é inválido', false)
-            return response.status(400).json({message: 'Token inválido'})
+            return response.status(401).json({message: 'Token inválido'})
         }
 
     }
@@ -91,8 +91,10 @@ class UserController{
         const user = await repository.getById(id) 
 
         if(!user){
+            log('UserController/getById','usuário não encontrado', false)
             return response.status(400).json({message: 'Não encontrado'})
         }
+        log('UserController/getById','usuário encontrado', true)
         return response.status(302).json(user)
 
     }
@@ -101,8 +103,10 @@ class UserController{
         const isValid = tokenService.validateToken(token);
 
         if(!isValid){
+            log('UserController/validateToken','O token é inválido', false)
             return response.status(401).json({message: 'Token inválido'})
         }
+        log('UserController/validateToken','O token é válido', true)
         return response.status(200).json({message: 'Token válido'})
 
     }
