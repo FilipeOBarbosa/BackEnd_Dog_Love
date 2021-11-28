@@ -5,6 +5,7 @@ class App{
     constructor(){
         const express = require('express')
         const userRoute = require('./routes/UserRoute')
+        const dogRoute = require('./routes/DogRoute')
         const cors = require('cors')
 
         this.app = express();
@@ -12,6 +13,7 @@ class App{
         this.app.use(express.json())
 
         this.app.use('/user',userRoute.getRouter());
+        this.app.use('/dog',dogRoute.getRouter());
     }
     getApp(){
         return this.app;
