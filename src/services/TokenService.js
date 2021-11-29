@@ -9,10 +9,10 @@ exports.generateToken = (data) => {
 
 exports.validateToken = (token) =>{
     try {
-        jwt.verify(token,SECRET)
-        return true;   
+        const user = jwt.verify(token,SECRET)
+        return user.userId;   
     } catch (error) {
-        return false
+        return null
     }
 }
 
