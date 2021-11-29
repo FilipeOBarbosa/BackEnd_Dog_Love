@@ -1,5 +1,6 @@
 const {v4: uuid} = require('uuid');
 const Dog = require('../models/Dog')
+const log = require('../services/LogService')
 
 class DogRepository{
 
@@ -22,9 +23,11 @@ class DogRepository{
         });
         try{
             await newDog.save();
+            log('DogRepository/createDog','Dog criado com sucesso', true)
             return true;
     
         }catch(err){
+            log('DogRepository/createDog','Dog não foi criado com sucesso', false)
             return false;
     
         }
@@ -32,6 +35,7 @@ class DogRepository{
 
     async readDog(){
         const dogs = await Dog.find();
+        log('DogRepository/readDog','Sucesso na resposta', true)
         return dogs; 
     }
 
