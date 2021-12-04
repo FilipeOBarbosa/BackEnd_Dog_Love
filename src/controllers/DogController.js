@@ -19,15 +19,30 @@ class DogController{
     }
 
     async delete(request, response){
-        const {id} = request.query;
+        const {_id} = request.body;
     
-        const result = await repository.deleteDog(id);
+        const result = await repository.deleteDog(_id);
     
         if(result){
             return response.status(201).json({message: "Dog excluido com sucesso"})
         }else{
             return response.status(400).json({message: "Não foi possivel excluir o dog"})
         }
+    }
+
+    async getDogByDono(request, response){
+        const {id} = request.query;
+
+        const result = await repository.getDogByDono(id);
+
+        try{
+            return response.status(200).json(result)
+        }catch(error){
+            return response.status(500).json({message: "Houve um erro na sua requisição"})
+        }
+        
+
+
     }
 
 }
