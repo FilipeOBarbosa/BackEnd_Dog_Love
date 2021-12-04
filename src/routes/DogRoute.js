@@ -5,6 +5,7 @@ const controller = require('../controllers/DogController')
 class DogRoute{
     constructor(){
         router.post('/',controller.post)
+        router.get('/get-by-dono', controller.getDogByDono)
         router.get('/',controller.get);
         router.delete('/',controller.delete);
     }

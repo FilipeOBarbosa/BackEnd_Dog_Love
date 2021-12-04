@@ -46,6 +46,14 @@ class DogRepository{
     
         return retorno;
     }
+
+    async getDogByDono(id){
+        const user = await Dog.find({
+            _idUser:id
+        })
+        return user;
+
+    }
     
 }
 module.exports = new DogRepository();
