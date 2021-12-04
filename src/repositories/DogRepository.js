@@ -10,7 +10,8 @@ class DogRepository{
             nome,
             sexo,
             idade,
-            raca
+            raca,
+            descricao
         } = data;
     
         const newDog = new Dog({
@@ -19,7 +20,8 @@ class DogRepository{
             nome,
             sexo,
             idade,
-            raca
+            raca,
+            descricao
         });
         try{
             await newDog.save();
@@ -43,15 +45,16 @@ class DogRepository{
         const resultado = await Dog.deleteOne({ _id:id });
 
         let retorno = resultado.deletedCount == 0? false :true;
-    
+
         return retorno;
     }
 
     async getDogByDono(id){
-        const user = await Dog.find({
+        const dogs = await Dog.find({
             _idUser:id
         })
-        return user;
+        log('DogRepository/getDogByDono', 'Sucesso ao encontrar os cachorros desse usuario', true)
+        return dogs;
 
     }
     
