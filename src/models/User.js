@@ -19,15 +19,15 @@ const userSchema = new mongoose.Schema({
     },
     state:{
         type:String,
-        required: false
+        required: true
     },
     city:{
         type:String,
-        required: false
+        required: true
     },
     district:{
         type:String,
-        required: false
+        required: true
     }
 });
 module.exports = mongoose.model("User", userSchema);
