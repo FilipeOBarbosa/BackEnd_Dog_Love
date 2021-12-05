@@ -11,18 +11,19 @@ class MatchRepository{
     }
     async createMatch (data){
         const {
-            _id,
-            idOne,
-            idTwo,
+            idUserOne,
+            idDogOne,
+            idUserTwo,
+            idDogTwo
         } = data;
         
-        console.log(data);
         const newMatch = new Match({
             _id: uuid(),
-            idOne,
-            idTwo,
+            idUserOne,
+            idDogOne,
+            idUserTwo,
+            idDogTwo
         });
-        console.log(newMatch);
         try{
             await newMatch.save();
             log('MatchRepository/createMatch','Match criado com sucesso', true)
@@ -33,6 +34,22 @@ class MatchRepository{
             return false;
     
         }
+    }
+
+    async findById(id){
+        let result = await Match.find({
+            idUserOne: id
+        })
+
+        if(result.length!=0){
+            return result
+        }
+
+        result = await Match.find({
+            idUserTwo: id
+        });
+        
+        return result;
     }
     
 }
