@@ -1,4 +1,5 @@
 const repository = require('../repositories/DogRepository');
+const log = require('../services/LogService');
 
 class DogController{
 
@@ -16,6 +17,19 @@ class DogController{
     async get(request, response){
         const result = await repository.readDog();
         return response.status(201).json(result); 
+    }
+
+    async put(request, response){
+        const data = request.body;
+
+        const result = await repository.updateDog(data)
+        if(result){
+            log('DogController/put', 'Alteração realizada com sucesso', true)
+            return response.status(200).json({message: "Campos alterados com sucesso"})
+        }else{
+            log('DogController/put', 'Alteração deu errado', false)
+            return response.status(404).json({message: "Não foi possivel alterar os campos ou cachorro não encontrado"})
+        }
     }
 
     async delete(request, response){

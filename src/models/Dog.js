@@ -23,6 +23,10 @@ const dogSchema = new mongoose.Schema({
     raca:{
         type:String,
         required: true
+    },
+    descricao:{
+        type:String,
+        required:true
     }
 });
 module.exports = mongoose.model("Dog", dogSchema);
