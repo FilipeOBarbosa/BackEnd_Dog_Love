@@ -62,6 +62,13 @@ class DogRepository{
         return retorno;
     }
 
+    async getById(id){
+        const dog = await Dog.findOne({
+            _id: id
+        });
+        return dog;
+    }
+
     async getDogByDono(id){
         const dogs = await Dog.find({
             _idUser:id
