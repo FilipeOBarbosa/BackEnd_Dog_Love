@@ -18,5 +18,10 @@ class DogController{
         return response.status(201).json(result); 
     }
 
+    async getById(request, response){
+        const result = await repository.findById(request.body.id)
+        return response.status(200).json(result); 
+    }
+
 }
 module.exports= new DogController();
