@@ -4,27 +4,27 @@ const dogSchema = new mongoose.Schema({
         type:String,
         required: true
     },
-    idOne:{
-        idUser:{
-            type:String,
-            required: true 
-        },
-        idDog:{
-            type:String,
-            required: true
-        }
-
+    
+    idUserOne:{
+        type:String,
+        required: true 
     },
-    idTwo:{
-        idUser:{
-            type:String,
-            required: true 
-        },
-        idDog:{
-            type:String,
-            required: true
-        }
-
+    idDogOne:{
+        type:String,
+        required: true
     },
+
+
+
+    idUserTwo:{
+        type:String,
+        required: true 
+    },
+    idDogTwo:{
+        type:String,
+        required: true
+    }
+
+   
 });
 module.exports = mongoose.model("Match", dogSchema);
