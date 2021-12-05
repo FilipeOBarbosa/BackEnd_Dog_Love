@@ -18,6 +18,19 @@ class DogController{
         return response.status(201).json(result); 
     }
 
+    async put(request, response){
+        const data = request.body;
+
+        const result = await repository.updateDog(data)
+        if(result){
+
+            return response.status(201).json({message: "Campos alterados com sucesso"})
+        }else{
+
+            return response.status(400).json({message: "Não foi possivel alterar os campos"})
+        }
+    }
+
     async delete(request, response){
         const {_id} = request.body;
     

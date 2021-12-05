@@ -8,6 +8,7 @@ class DogRoute{
         router.get('/get-by-dono', controller.getDogByDono)
         router.get('/',controller.get);
         router.delete('/',controller.delete);
+        router.put('/',controller.put);
     }
     getRouter(){
         return router;
