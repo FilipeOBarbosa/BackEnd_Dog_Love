@@ -70,7 +70,7 @@ class UserController{
             const oldToken = tokenService.decoteToken(data.token);
             if(oldToken.userId === data._id){
                 log('UserController/refreshToken','Antigo token está válido', true)
-                return response.status(202).json({Old: data.token})
+                return response.status(200).json({token: data.token})
             }
             log('UserController/refreshToken','O token não pertence ao usuário informado', false)
             return response.status(401).json({message: 'Não autorizado'})
@@ -79,7 +79,7 @@ class UserController{
             if(error.name === 'TokenExpiredError'){
                 const newToken = tokenService.generateToken(data);
                 log('UserController/refreshToken','Um novo token foi criado', true)
-                return response.status(201).json({new: newToken})
+                return response.status(200).json({token: newToken})
             }
             log('UserController/refreshToken','O token é inválido', false)
             return response.status(401).json({message: 'Token inválido'})
