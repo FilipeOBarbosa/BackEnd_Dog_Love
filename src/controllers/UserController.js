@@ -82,7 +82,7 @@ class UserController{
                 return response.status(200).json({token: newToken})
             }
             log('UserController/refreshToken','O token é inválido', false)
-            return response.status(401).json({message: 'Token inválido'})
+            return response.status(400).json({message: 'Token inválido'})
         }
 
     }
