@@ -1,6 +1,7 @@
 const repository = require('../repositories/UserRepository');
 const tokenService = require('../services/TokenService');
 const log = require('../services/LogService');
+const filter = require('../services/FilterService');
 
 class UserController{
 
@@ -109,6 +110,19 @@ class UserController{
         log('UserController/validateToken','O token é válido', true)
         return response.status(200).json({message: 'Token válido', idUser:isValid})
 
+    }
+
+    async getByFilterState(request, response){
+        const data = request.query;
+        const result = await filter.filterState(data)
+        log('UserController/getByFilterState','animais de usuarios do mesmo estado encontrados', true)
+        return response.status(302).json(result)
+    }
+    async getByFilterCity(request, response){
+        const data = request.query;
+        const result = await filter.filterCity(data)
+        log('UserController/getByFilterState','animais de usuarios da mesma cidade encontrados', true)
+        return response.status(302).json(result)
     }
 
 }

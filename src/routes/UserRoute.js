@@ -13,6 +13,8 @@ class UserRoute{
         router.post('/login',controller.login)
         router.post('/refresh-token', controller.refreshToken)
         router.get('/validate-token', controller.validateToken)
+        router.get('/get-by-filter-state', controller.getByFilterState)
+        router.get('/get-by-filter-city', controller.getByFilterCity)
     }
 
     getRouter(){
