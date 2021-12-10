@@ -24,10 +24,9 @@ class DogController{
 
         const result = await repository.updateDog(data)
         if(result){
-            log('DogController/put', 'Alteração realizada com sucesso', true)
+
             return response.status(200).json({message: "Campos alterados com sucesso"})
         }else{
-            log('DogController/put', 'Alteração deu errado', false)
             return response.status(404).json({message: "Não foi possivel alterar os campos ou cachorro não encontrado"})
         }
     }

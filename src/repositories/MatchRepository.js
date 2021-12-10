@@ -26,7 +26,6 @@ class MatchRepository{
         });
         try{
             await newMatch.save();
-            log('MatchRepository/createMatch','Match criado com sucesso', true)
             return true;
     
         }catch(err){

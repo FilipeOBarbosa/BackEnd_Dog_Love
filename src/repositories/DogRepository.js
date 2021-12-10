@@ -25,7 +25,6 @@ class DogRepository{
         });
         try{
             await newDog.save();
-            log('DogRepository/createDog','Dog criado com sucesso', true)
             return true;
     
         }catch(err){
@@ -37,7 +36,6 @@ class DogRepository{
 
     async readDog(){
         const dogs = await Dog.find();
-        log('DogRepository/readDog','Sucesso na resposta', true)
         return dogs; 
     }
 
@@ -72,8 +70,7 @@ class DogRepository{
     async getDogByDono(id){
         const dogs = await Dog.find({
             _idUser:id
-        })
-        log('DogRepository/getDogByDono', 'Sucesso ao encontrar os cachorros desse usuario', true)
+        });
         return dogs;
 
     }

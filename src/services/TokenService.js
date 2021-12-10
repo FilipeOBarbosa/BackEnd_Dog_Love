@@ -1,4 +1,5 @@
-const  jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
+const log = require('./LogService')
 const SECRET = 'segredodoglove'
 
 exports.generateToken = (data) => {
@@ -12,6 +13,7 @@ exports.validateToken = (token) =>{
         const user = jwt.verify(token,SECRET)
         return user.userId;   
     } catch (error) {
+        log('TokenService/validateToken','erro aqui', false)
         return null
     }
 }

@@ -30,7 +30,6 @@ class UserRepository{
         });
         try{
             await newUser.save();
-            log('UserRepository/create','User criado com sucesso', true)
             return true;
     
         }catch(err){
@@ -47,14 +46,38 @@ class UserRepository{
 
     async updatePassword(data){
         try{
-            const user = await User.findByIdAndUpdate(data.id,{
+            const user = await User.findByIdAndUpdate(data._id,{
                 $set:{
                     password: vcsl.encrypt(data.password)
                 }
             });
+           
             return true
         }catch(error){
+            log('UserRepository/updatePassword','Deu erro aqui',false)
             return false
+        }
+    }
+
+    async updateUser(data){
+        try {
+            const user = await User.findByIdAndUpdate(data._id,{
+                $set:{
+                    name: data.name,
+                    email: data.email,
+                    state: data.state,
+                    city: data.city,
+                    district: data.district
+                }
+            });
+        
+            if(user === null || user === undefined){
+                return false
+            }
+            return true;
+        } catch (error) {
+            log('UserRepository/updateUser','Deu erro aqui',false)
+            return false;
         }
     }
 
@@ -104,6 +127,7 @@ class UserRepository{
             return montarResult;
             
         } catch (error) {
+            log('UserRepository/getById','Deu erro aqui',false)
             return undefined
         }
 
@@ -114,7 +138,6 @@ class UserRepository{
             state: stateParam
         });
         if(users.length === 0){
-            log('filterByState/UserRepository','nenhuma usuario encontrado nesse estado', false)
             return []
         }
         const dogs  = await filterService.filter(users);
@@ -128,7 +151,6 @@ class UserRepository{
             city: cityParam
         });
         if(users.length === 0){
-            log('FilterService/UserRepository','nenhuma usuario encontrado nessa cidade', false)
             return []
         }
         const dogs = await filterService.filter(users);
