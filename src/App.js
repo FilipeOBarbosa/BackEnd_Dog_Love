@@ -1,8 +1,7 @@
-
-
 class App{
     
     constructor(){
+        require('dotenv').config()
         const express = require('express');
         const userRoute  = require('./routes/UserRoute');
         const matchRoute = require('./routes/MatchRoute');

@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 function initServer(){
     const app = require('../src/App')
     const database = require('../config/ConnectionDatabase')
