@@ -44,15 +44,16 @@ class DogController{
     }
 
     async getDogByDono(request, response){
-        const {id} = request.query;
-
-        const result = await repository.getDogByDono(id);
-
-        try{
-            return response.status(200).json(result)
-        }catch(error){
-            return response.status(500).json({message: "Houve um erro na sua requisição"})
+        const {id, pag} = request.query;
+        if(!id||!pag || pag==0){
+            return response.status(400).json({message: "informe um id e uma página válida"})
         }
+        const result = await repository.getDogByDono(request.query);
+
+        if(result.length!==0){
+            return response.status(302).json(result)
+        }
+            return response.status(404).json({message:'Nada encontrado'})
         
 
 

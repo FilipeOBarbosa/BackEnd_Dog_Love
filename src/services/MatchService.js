@@ -3,7 +3,6 @@ const log = require('./LogService');
 exports.authorizeMatch = async (request, response, next) =>{
     const match = request.body;
 
-    console.log(match)
     const isEquals = equals(match);
     if(!isEquals){
 

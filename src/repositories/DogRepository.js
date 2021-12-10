@@ -1,6 +1,7 @@
 const {v4: uuid} = require('uuid');
 const Dog = require('../models/Dog')
-const log = require('../services/LogService')
+const logService = require('../services/LogService')
+const paginationService = require('../services/PaginationService');
 
 class DogRepository{
 
@@ -28,7 +29,7 @@ class DogRepository{
             return true;
     
         }catch(err){
-            log('DogRepository/createDog','Dog não foi criado com sucesso', false)
+            logService('DogRepository/createDog','Dog não foi criado com sucesso', false)
             return false;
     
         }
@@ -67,11 +68,16 @@ class DogRepository{
         return dog;
     }
 
-    async getDogByDono(id){
+    async getDogByDono(data){
         const dogs = await Dog.find({
-            _idUser:id
+            _idUser:data.id
         });
-        return dogs;
+        if(dogs.length===0){
+            return []
+        }
+        const result = paginationService.pagination(dogs,data.pag);
+
+        return result;
 
     }
     
