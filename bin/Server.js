@@ -1,8 +1,8 @@
-require('dotenv').config()
+
 
 function initServer(){
     const app = require('../src/App')
-    const database = require('../src/database/Connection')
+    const database = require('../config/ConnectionDatabase')
     const os = require('os');
     const chalk = require('chalk');
     const PORT = process.env.PORT || 3000;
