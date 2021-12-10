@@ -1,7 +1,6 @@
 const repository = require('../repositories/UserRepository');
 const tokenService = require('../services/TokenService');
 const log = require('../services/LogService');
-const filter = require('../services/FilterService');
 
 class UserController{
 
@@ -112,16 +111,45 @@ class UserController{
 
     }
 
-    async getByFilterState(request, response){
-        const data = request.query;
-        const result = await filter.filterState(data)
-        log('UserController/getByFilterState','animais de usuarios do mesmo estado encontrados', true)
+    async filterByState(request, response){
+        const { state } = request.query;
+
+        if(!state){
+            return response.status(400).json({message: "Informe um estado"})
+        }
+
+        const result = await repository.filterByState(state)
+        if(result.length===0){
+
+            log('UserController/getByFilterState',
+            'animais de usuarios do mesmo estado não encontrados', false)
+
+            return response.status(404).json({message: "Nenhum dog encontrado"})
+        }
+
+        log('UserController/getByFilterState',
+        'animais de usuarios do mesmo estado encontrados', true)
+
         return response.status(302).json(result)
     }
-    async getByFilterCity(request, response){
-        const data = request.query;
-        const result = await filter.filterCity(data)
-        log('UserController/getByFilterState','animais de usuarios da mesma cidade encontrados', true)
+    async filterByCity(request, response){
+        const {city} = request.query;
+
+        if(!city){
+            return response.status(400).json({message: "Informe uma cidade"})
+        }
+
+        const result = await repository.filterByCity(city)
+        if(result.length===0){
+
+            log('UserController/getByFilterState',
+            'animais de usuarios da mesma cidade encontrados', false)
+
+            return response.status(404).json({message: "Nenhum dog encontrado"})
+        }
+        log('UserController/getByFilterState',
+        'animais de usuarios da mesma cidade encontrados', true)
+
         return response.status(302).json(result)
     }
 
