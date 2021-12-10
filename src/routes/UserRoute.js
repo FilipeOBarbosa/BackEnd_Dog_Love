@@ -5,16 +5,17 @@ const authService = require('../services/AuthService')
 
 class UserRoute{
     constructor(){
-        router.post('/',controller.post)
+        router.post('/',controller.post);
         router.get('/',authService.authorize,controller.get);
-        router.put('/',authService.authorize,controller.put)
+        router.patch('/',authService.authorize,controller.updatePassword);
         router.delete('/',authService.authorize,controller.delete);
-        router.get('/get-by-id',controller.getById)
-        router.post('/login',controller.login)
-        router.post('/refresh-token', controller.refreshToken)
-        router.get('/validate-token', controller.validateToken)
-        router.get('/filter-by-state',authService.authorize, controller.filterByState)
-        router.get('/filter-by-city',authService.authorize, controller.filterByCity)
+        router.get('/get-by-id',controller.getById);
+        router.post('/login',controller.login);
+        router.post('/refresh-token', controller.refreshToken);
+        router.get('/validate-token', controller.validateToken);
+        router.get('/filter-by-state',authService.authorize, controller.filterByState);
+        router.get('/filter-by-city',authService.authorize, controller.filterByCity);
+        router.put('/',authService.authorize, controller.updateUser);
     }
 
     getRouter(){
