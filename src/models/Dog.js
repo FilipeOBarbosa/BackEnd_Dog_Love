@@ -27,6 +27,10 @@ const dogSchema = new mongoose.Schema({
     descricao:{
         type:String,
         required:true
+    },
+    imgURL:{
+        type:String,
+        required:true
     }
 });
 module.exports = mongoose.model("Dog", dogSchema);

@@ -12,7 +12,8 @@ class DogRepository{
             sexo,
             idade,
             raca,
-            descricao
+            descricao,
+            imgURL
         } = data;
     
         const newDog = new Dog({
@@ -22,7 +23,8 @@ class DogRepository{
             sexo,
             idade,
             raca,
-            descricao
+            descricao,
+            imgURL
         });
         try{
             await newDog.save();
