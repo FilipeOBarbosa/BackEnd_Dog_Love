@@ -1,9 +1,7 @@
 const multer = require('multer');
-const path =require('path');
-
 const update = multer.diskStorage({
     destination:  (req, file, cb) =>{
-        cb(null, path.resolve(__dirname,'..','public','dogs'))
+        cb(null, 'public/dogs')
     },
     filename:  (req, file, cb) =>{
         const extensaoArquivo = file.mimetype.split('/')[1];
