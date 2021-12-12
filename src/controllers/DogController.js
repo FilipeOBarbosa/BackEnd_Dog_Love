@@ -3,8 +3,9 @@ const repository = require('../repositories/DogRepository');
 
 class DogController{
     async post(request, response) {
+        const fullUrl = request.protocol + '://' + request.get('Host');
         const dog ={
-            img:request.file.filename,
+            img:`${fullUrl}/dogs/${request.file.filename}`,
             data:request.body
 
         }
