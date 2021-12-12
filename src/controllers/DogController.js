@@ -4,21 +4,21 @@ const path =require('path');
 
 class DogController{
 
-    deleteImg(request, response){
-        const {name}= request.body;
-        if(!name){
-            return response.status(400).json({ message: "Informe o nome da img"}); 
-        }
+    // deleteImg(request, response){
+    //     const {name}= request.body;
+    //     if(!name){
+    //         return response.status(400).json({ message: "Informe o nome da img"}); 
+    //     }
 
-        const dir = path.resolve(__dirname,'..','..','public','dogs');
-        fs.unlink(dir+`/${name}`,(err)=>{
-            if (err) {
-                return response.status(404).json({ message: "img não encontrada"}); 
-            } else {
-                return response.status(200).json({ message: "deletado"});                             
-            }
-        })
-    }
+    //     const dir = path.resolve(__dirname,'..','..','public','dogs');
+    //     fs.unlink(dir+`/${name}`,(err)=>{
+    //         if (err) {
+    //             return response.status(404).json({ message: "img não encontrada"}); 
+    //         } else {
+    //             return response.status(200).json({ message: "deletado"});                             
+    //         }
+    //     })
+    // }
 
 
     async post(request, response) {
