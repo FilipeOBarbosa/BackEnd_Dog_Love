@@ -5,7 +5,10 @@ const paginationService = require('../services/PaginationService');
 
 class DogRepository{
 
+
+
     async createDog (data){
+        const imgURL =data.img
         const {
             _idUser,
             nome,
@@ -13,8 +16,7 @@ class DogRepository{
             idade,
             raca,
             descricao,
-            imgURL
-        } = data;
+        } = data.data;
     
         const newDog = new Dog({
             _id: uuid(),

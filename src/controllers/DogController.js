@@ -1,10 +1,14 @@
 const repository = require('../repositories/DogRepository');
-const log = require('../services/LogService');
+
 
 class DogController{
-
     async post(request, response) {
-        const resultado = await repository.createDog(request.body)
+        const dog ={
+            img:request.file.filename,
+            data:request.body
+
+        }
+        const resultado = await repository.createDog(dog)
 
         if(resultado === true){
             return response.status(201).json({ message: "Dog cadastrado!" });

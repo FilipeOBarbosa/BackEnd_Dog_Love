@@ -1,4 +1,5 @@
-class App{
+const path = require('path')
+;class App{
     
     constructor(){
         require('dotenv').config()
@@ -11,7 +12,7 @@ class App{
         this.app = express();
         this.app.use(cors())
         this.app.use(express.json())
-
+        this.app.use(express.static(path.resolve(__dirname,'..','public')))
         this.app.use('/user',userRoute.getRouter());
         this.app.use('/dog',dogRoute.getRouter());
         this.app.use('/match',matchRoute.getRouter());
