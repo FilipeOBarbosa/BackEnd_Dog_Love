@@ -1,7 +1,26 @@
 const repository = require('../repositories/DogRepository');
-
+const fs = require('fs')
+const path =require('path');
 
 class DogController{
+
+    deleteImg(request, response){
+        const {name}= request.body;
+        if(!name){
+            return response.status(400).json({ message: "Informe o nome da img"}); 
+        }
+
+        const dir = path.resolve(__dirname,'..','..','public','dogs');
+        fs.unlink(dir+`/${name}`,(err)=>{
+            if (err) {
+                return response.status(404).json({ message: "img não encontrada"}); 
+            } else {
+                return response.status(200).json({ message: "deletado"});                             
+            }
+        })
+    }
+
+
     async post(request, response) {
         const fullUrl = request.protocol + '://' + request.get('Host');
         const dog ={
