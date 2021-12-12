@@ -1,5 +1,5 @@
-const path = require('path')
-;class App{
+const path = require('path');
+class App{
     
     constructor(){
         require('dotenv').config()

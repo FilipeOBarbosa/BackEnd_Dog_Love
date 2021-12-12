@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/DogController')
 const authService = require('../services/AuthService')
+const crypto = require('crypto')
 const multer = require('multer');
 const storage = require('../../config/MulterConfig')
 const upload = multer({storage})
