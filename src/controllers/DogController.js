@@ -23,19 +23,21 @@ class DogController{
 
     async post(request, response) {
         const fullUrl = request.protocol + '://' + request.get('Host');
-        const dog ={
-            img:`${fullUrl}/dogs/${request.file.filename}`,
-            data:request.body
+        console.log(path.resolve(__dirname,'..','public','dogs'))
+        return response.status(201).json({ message: "Dog cadastrado!" });
+        // const dog ={
+        //     img:`${fullUrl}/dogs/${request.file.filename}`,
+        //     data:request.body
 
-        }
-        const resultado = await repository.createDog(dog)
+        // }
+        // const resultado = await repository.createDog(dog)
 
-        if(resultado === true){
-            return response.status(201).json({ message: "Dog cadastrado!" });
-        }
-        else{
-            return response.status(400).json({ message: "Não foi possivel cadastrar seu doguinho"}); 
-        }
+        // if(resultado === true){
+        //     return response.status(201).json({ message: "Dog cadastrado!" });
+        // }
+        // else{
+        //     return response.status(400).json({ message: "Não foi possivel cadastrar seu doguinho"}); 
+        // }
     }
 
     async get(request, response){
