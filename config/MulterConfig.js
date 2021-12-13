@@ -1,7 +1,6 @@
 const multer = require('multer');
 const path = require('path');
 const caminhoPasta = path.resolve(__dirname,'..','public/dogs/')
-console.log(caminhoPasta)
 const update = multer.diskStorage({
     destination:  (req, file, cb) =>{
         cb(null, caminhoPasta)
