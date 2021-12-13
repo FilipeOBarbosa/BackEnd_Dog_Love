@@ -73,7 +73,7 @@ class DogRepository{
             _id: id
         });
         return dog;
-    }
+    } 
 
     async getDogByDono(data, fullUrl){
         const dogs = await Dog.find({
