@@ -80,11 +80,13 @@ class DogRepository{
             _idUser:data.id
         });
         if(dogs.length===0){
-            return []
+            return {
+                dogs:[]
+            }
         }
         const pagination = paginationService.pagination(dogs,data.pag);
         const finalResult = makeImgService.makeImg(pagination, fullUrl)
-
+        console.log(finalResult)
         return finalResult;
 
     }
