@@ -29,6 +29,10 @@ const dogSchema = new mongoose.Schema({
         required:true
     },
     imgURL:{
+        type:Buffer,
+        required:true
+    },
+    imgContentType:{
         type:String,
         required:true
     }

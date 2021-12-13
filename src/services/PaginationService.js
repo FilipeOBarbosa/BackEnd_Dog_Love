@@ -10,6 +10,4 @@ exports.pagination= ( dogs, pagina )=>{
 
     }
     return object;
-
-
 }

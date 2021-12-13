@@ -2,13 +2,15 @@ const {v4: uuid} = require('uuid');
 const Dog = require('../models/Dog')
 const logService = require('../services/LogService')
 const paginationService = require('../services/PaginationService');
+const makeImgService = require('../services/MakeImgService')
 
 class DogRepository{
 
 
 
     async createDog (data){
-        const imgURL =data.img
+        const imgURL =data.img;
+        const imgContentType =data.imgContentType;
         const {
             _idUser,
             nome,
@@ -26,7 +28,8 @@ class DogRepository{
             idade,
             raca,
             descricao,
-            imgURL
+            imgURL,
+            imgContentType
         });
         try{
             await newDog.save();
@@ -40,7 +43,7 @@ class DogRepository{
     }
 
     async readDog(){
-        const dogs = await Dog.find();
+        const dogs = await Dog.find({},'_id _idUser nome sexo idade raca descricao ');
         return dogs; 
     }
 
@@ -72,16 +75,17 @@ class DogRepository{
         return dog;
     }
 
-    async getDogByDono(data){
+    async getDogByDono(data, fullUrl){
         const dogs = await Dog.find({
             _idUser:data.id
         });
         if(dogs.length===0){
             return []
         }
-        const result = paginationService.pagination(dogs,data.pag);
+        const pagination = paginationService.pagination(dogs,data.pag);
+        const finalResult = makeImgService.makeImg(pagination, fullUrl)
 
-        return result;
+        return finalResult;
 
     }
     

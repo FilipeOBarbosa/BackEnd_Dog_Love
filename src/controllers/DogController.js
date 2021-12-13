@@ -20,12 +20,18 @@ class DogController{
         })
     }
     async post(request, response) {
+        const fs = require('fs');
         const fullUrl = request.protocol + '://' + request.get('Host');
+        const binary = fs.readFileSync(request.file.path);
+
         const dog ={
-            img:`${fullUrl}/dogs/${request.file.filename}`,
+            img:  binary,
+            imgContentType: request.file.mimetype,
             data:request.body
 
         }
+        //return response.status(201).json(dog);
+        
         const resultado = await repository.createDog(dog)
 
         if(resultado === true){
@@ -38,7 +44,10 @@ class DogController{
 
     async get(request, response){
         const result = await repository.readDog();
-        return response.status(201).json(result); 
+        if(result.length !== 0){
+            return response.status(302).json(result); 
+        }
+        return response.status(404).json(result); 
     }
 
     async put(request, response){
@@ -70,12 +79,15 @@ class DogController{
         if(!id||!pag || pag==0){
             return response.status(400).json({message: "informe um id e uma página válida"})
         }
-        const result = await repository.getDogByDono(request.query);
+        const fullUrl = request.protocol + '://' + request.get('Host');
+        const result = await repository.getDogByDono(request.query, fullUrl);
 
-        if(result.length!==0){
+        if(result.dogs.length!==0){
+
             return response.status(302).json(result)
         }
-            return response.status(404).json({message:'Nada encontrado'})
+
+        return response.status(404).json({message:'Nada encontrado'})
         
 
 
