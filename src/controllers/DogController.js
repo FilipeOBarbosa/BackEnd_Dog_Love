@@ -82,6 +82,7 @@ class DogController{
         const fullUrl = request.protocol + '://' + request.get('Host');
         const result = await repository.getDogByDono(request.query, fullUrl);
 
+        
         if(result.dogs.length!==0){
 
             return response.status(302).json(result)
