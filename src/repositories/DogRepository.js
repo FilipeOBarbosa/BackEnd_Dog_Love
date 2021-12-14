@@ -9,8 +9,10 @@ class DogRepository{
 
 
     async createDog (data){
-        const imgURL =data.img;
+        const img =data.img;
         const imgContentType =data.imgContentType;
+        const linkImg = data.linkImg;
+
         const {
             _idUser,
             nome,
@@ -28,8 +30,9 @@ class DogRepository{
             idade,
             raca,
             descricao,
-            imgURL,
-            imgContentType
+            img,
+            imgContentType,
+            linkImg
         });
         try{
             await newDog.save();
@@ -42,9 +45,11 @@ class DogRepository{
         }
     }
 
-    async readDog(){
-        const dogs = await Dog.find({},'_id _idUser nome sexo idade raca descricao ');
-        return dogs; 
+    async readDog(data, fullUrl){
+        const dogs = await Dog.find();
+        const pagination = paginationService.pagination(dogs,data.pag);
+        const finalResult = await makeImgService.makeImg(pagination, fullUrl)
+        return finalResult;
     }
 
     async updateDog(data){
@@ -85,9 +90,21 @@ class DogRepository{
             }
         }
         const pagination = paginationService.pagination(dogs,data.pag);
-        const finalResult = makeImgService.makeImg(pagination, fullUrl)
-        console.log(finalResult)
+        const finalResult = await makeImgService.makeImg(pagination, fullUrl)
         return finalResult;
+    }
+    async updateImg(data){
+        try {
+            const dog = await Dog.findByIdAndUpdate(data._id,{
+                $set:{
+                    linkImg: data.linkImg
+                }
+            })
+            return true
+            
+        } catch (error) {
+            return false
+        }
 
     }
     

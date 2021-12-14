@@ -28,13 +28,17 @@ const dogSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    imgURL:{
+    img:{
         type:Buffer,
         required:true
     },
     imgContentType:{
         type:String,
         required:true
+    },
+    linkImg:{
+        type:String,
+        required:false
     }
 });
 module.exports = mongoose.model("Dog", dogSchema);

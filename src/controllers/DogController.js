@@ -21,16 +21,19 @@ class DogController{
     }
     async post(request, response) {
         const fs = require('fs');
-        const fullUrl = request.protocol + '://' + request.get('Host');
         const binary = fs.readFileSync(request.file.path);
+        const fullUrl = request.protocol + '://' + request.get('Host');
+        const novoNomeArquivo = request.file.filename;
+        const linkImg = `${fullUrl}/dogs/${novoNomeArquivo}`
+        
 
         const dog ={
             img:  binary,
             imgContentType: request.file.mimetype,
+            linkImg:linkImg,
             data:request.body
-
         }
-        //return response.status(201).json(dog);
+
         
         const resultado = await repository.createDog(dog)
 
@@ -43,7 +46,14 @@ class DogController{
     }
 
     async get(request, response){
-        const result = await repository.readDog();
+        const {pag} = request.query;
+        if(!pag || pag==0){
+            return response.status(400).json({message: "informe uma página válida"})
+        }
+
+        const fullUrl = request.protocol + '://' + request.get('Host');
+        
+        const result = await repository.readDog(request.query,fullUrl);
         if(result.length !== 0){
             return response.status(302).json(result); 
         }
