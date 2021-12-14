@@ -7,6 +7,7 @@ class App{
         const userRoute  = require('./routes/UserRoute');
         const matchRoute = require('./routes/MatchRoute');
         const dogRoute   = require('./routes/DogRoute');
+        const favoritesRoute = require('./routes/FavoritesRoute')
         const cors = require('cors');
 
         this.app = express();
@@ -16,6 +17,7 @@ class App{
         this.app.use('/user',userRoute.getRouter());
         this.app.use('/dog',dogRoute.getRouter());
         this.app.use('/match',matchRoute.getRouter());
+        this.app.use('/favorites', favoritesRoute.getRouter());
     }
     getApp(){
         return this.app;
