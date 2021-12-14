@@ -47,7 +47,7 @@ class DogRepository{
 
     async readDog(data, fullUrl){
         const dogs = await Dog.find();
-        const pagination = paginationService.pagination(dogs,data.pag);
+        const pagination = paginationService.pagination(dogs,data.pag,12);
         const finalResult = await makeImgService.makeImg(pagination, fullUrl)
         return finalResult;
     }
@@ -89,7 +89,7 @@ class DogRepository{
                 dogs:[]
             }
         }
-        const pagination = paginationService.pagination(dogs,data.pag);
+        const pagination = paginationService.pagination(dogs,data.pag,9);
         const finalResult = await makeImgService.makeImg(pagination, fullUrl)
         return finalResult;
     }
