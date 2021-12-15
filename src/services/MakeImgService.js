@@ -43,6 +43,8 @@ exports.makeImg= async (data, fullUrl)=>{
 			idade: element.idade,
 			raca: element.raca,
 			descricao: element.descricao,
+            city: element.city,
+            state: element.state,
             linkImg: linkImg
         }
         dogs.push(object);
