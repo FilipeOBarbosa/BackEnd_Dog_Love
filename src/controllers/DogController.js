@@ -83,7 +83,7 @@ class DogController{
         const result = await repository.deleteDog(_id);
     
         if(result){
-            return response.status(201).json({message: "Dog excluido com sucesso"})
+            return response.status(200).json({message: "Dog excluido com sucesso"})
         }else{
             return response.status(400).json({message: "Não foi possivel excluir o dog"})
         }
