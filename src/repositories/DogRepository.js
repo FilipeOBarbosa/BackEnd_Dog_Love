@@ -20,6 +20,8 @@ class DogRepository{
             idade,
             raca,
             descricao,
+            city,
+            state
         } = data.data;
     
         const newDog = new Dog({
@@ -30,6 +32,8 @@ class DogRepository{
             idade,
             raca,
             descricao,
+            city,
+            state,
             img,
             imgContentType,
             linkImg
