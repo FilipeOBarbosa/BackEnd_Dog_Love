@@ -20,28 +20,33 @@ class DogController{
         })
     }
     async post(request, response) {
-        const fs = require('fs');
-        const binary = fs.readFileSync(request.file.path);
-        const fullUrl = request.protocol + '://' + request.get('Host');
-        const novoNomeArquivo = request.file.filename;
-        const linkImg = `${fullUrl}/dogs/${novoNomeArquivo}`
-        
+        try{
+            const fs = require('fs');
+            const binary = fs.readFileSync(request.file.path);
+            const fullUrl = request.protocol + '://' + request.get('Host');
+            const novoNomeArquivo = request.file.filename;
+            const linkImg = `${fullUrl}/dogs/${novoNomeArquivo}`
+            
+    
+            const dog ={
+                img:  binary,
+                imgContentType: request.file.mimetype,
+                linkImg:linkImg,
+                data:request.body
+            }
+    
+            
+            const resultado = await repository.createDog(dog)
+    
+            if(resultado === true){
+                return response.status(201).json({ message: "Dog cadastrado!" });
+            }
+            else{
+                return response.status(400).json({ message: "Não foi possivel cadastrar seu doguinho"}); 
+            }
+        }catch(err){
+            return response.status(400).json({ message: "Faltou campos"}); 
 
-        const dog ={
-            img:  binary,
-            imgContentType: request.file.mimetype,
-            linkImg:linkImg,
-            data:request.body
-        }
-
-        
-        const resultado = await repository.createDog(dog)
-
-        if(resultado === true){
-            return response.status(201).json({ message: "Dog cadastrado!" });
-        }
-        else{
-            return response.status(400).json({ message: "Não foi possivel cadastrar seu doguinho"}); 
         }
     }
 
