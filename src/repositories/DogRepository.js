@@ -97,6 +97,17 @@ class DogRepository{
         const finalResult = await makeImgService.makeImg(pagination, fullUrl)
         return finalResult;
     }
+    async getAllDogsByDono(data){
+        const dogs = await Dog.find({
+            _idUser:data.id
+        }, "_id _idUser nome");
+        if(dogs.length===0){
+            return {
+                dogs:[]
+            }
+        }
+        return dogs
+    }
     async updateImg(data){
         try {
             const dog = await Dog.findByIdAndUpdate(data._id,{

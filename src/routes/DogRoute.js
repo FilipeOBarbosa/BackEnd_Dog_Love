@@ -8,6 +8,7 @@ const storage = require('../../config/MulterConfig')
 const upload = multer({storage})
 class DogRoute{
     constructor(){
+        router.get('/get-all-dogs-by-dono', authService.authorize, controller.getAllDogsByDono)
         router.delete('/delete-img',authService.authorize,controller.deleteImg);
         router.post('/',authService.authorize,upload.single('foto'),controller.post)
         router.get('/get-by-dono',authService.authorize, controller.getDogByDono)

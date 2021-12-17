@@ -108,6 +108,21 @@ class DogController{
 
 
     }
+    async getAllDogsByDono(request, response){
+        const {id} = request.query;
+        if(!id){
+            return response.status(400).json({message: "informe um id válido"})
+        }
+        const result = await repository.getAllDogsByDono(request.query);
+
+        
+        if(result.length!==0){
+
+            return response.status(302).json(result)
+        }
+
+        return response.status(404).json({message:'Nada encontrado'})
+    }
 
 }
 module.exports= new DogController();
