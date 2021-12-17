@@ -53,14 +53,21 @@ class MatchRepository{
             const dogInteressado = await DogRepository.getById(dog.idDogTwo, fullUrl);
             
             const match = {
-                dogDono,
-                dogInteressado
+                dogDono:dogDono,
+                dogInteressado:dogInteressado,
+                id: dog._id
             }
             dogs.push(match)
         }
         
         
         return dogs;
+    }
+    async deleteById(id){
+        
+        const result = await Match.findByIdAndDelete(id)
+        console.log(result===null);
+        return result === null? false: true
     }
     
 }

@@ -28,5 +28,18 @@ class DogController{
         return response.status(302).json(result); 
     }
 
+    async deleteById(request, response){
+        const {id} = request.query;
+        if(!id){
+            return response.status(400).json({message: "digite um id"}); 
+        }
+        const result = await repository.deleteById(id)
+        if(!result){
+            return response.status(400).json({message:"Match já excluido ou algo deu errado"}); 
+        }
+        return response.status(200).json({message:"excluido com sucesso"}); 
+
+    }
+
 }
 module.exports= new DogController();
