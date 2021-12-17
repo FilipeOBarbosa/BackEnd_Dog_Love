@@ -23,7 +23,8 @@ class DogController{
         if(!id){
             return response.status(400).json({message: "digite um id"}); 
         }
-        const result = await repository.findById(id)
+        const fullUrl = request.protocol + '://' + request.get('Host');
+        const result = await repository.findById(id, fullUrl)
         return response.status(302).json(result); 
     }
 

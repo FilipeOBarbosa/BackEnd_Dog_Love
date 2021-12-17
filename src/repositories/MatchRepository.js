@@ -1,5 +1,6 @@
 const {v4: uuid} = require('uuid');
 const Match = require('../models/Match');
+const DogRepository = require('./DogRepository')
 const log = require('../services/LogService')
 
 class MatchRepository{
@@ -35,20 +36,31 @@ class MatchRepository{
         }
     }
 
-    async findById(id){
+    async findById(id, fullUrl){
         let result = await Match.find({
             idUserOne: id
         })
 
-        if(result.length!=0){
-            return result
+        if(result.length===0){
+            result = await Match.find({
+                idUserTwo: id
+            });
         }
+        let dogs = []
+        for (let i = 0; i < result.length; i++) {
+            const dog = result[i];
+            const dogDono = await DogRepository.getById(dog.idDogOne, fullUrl);
+            const dogInteressado = await DogRepository.getById(dog.idDogTwo, fullUrl);
 
-        result = await Match.find({
-            idUserTwo: id
-        });
+            const match = {
+                dogDono,
+                dogInteressado
+            }
+            dogs.push(match)
+        }
         
-        return result;
+        
+        return dogs;
     }
     
 }
