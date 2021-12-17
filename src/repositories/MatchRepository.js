@@ -52,7 +52,8 @@ class MatchRepository{
             const match = {
                 dogDono:dogDono,
                 dogInteressado:dogInteressado,
-                id: dog._id
+                id: dog._id,
+                emailUser: result.emailUser
             }
             dogs.push(match)
         }

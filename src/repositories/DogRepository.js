@@ -59,16 +59,16 @@ class DogRepository{
     }
 
     async updateDog(data){
-            const dog = await Dog.findByIdAndUpdate(data._id,{
-                $set:{
-                    descricao: data.descricao,
-                    idade: data.idade
-                }
-            });
-            if(dog == null){
-                return false
+        const dog = await Dog.findByIdAndUpdate(data._id,{
+            $set:{
+                descricao: data.descricao,
+                idade: data.idade
             }
-            return true
+        });
+        if(dog == null){
+            return false
+        }
+        return true
     }
 
     async deleteDog(id){
