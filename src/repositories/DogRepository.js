@@ -52,7 +52,7 @@ class DogRepository{
     async readDog(data, fullUrl){
         const dogs = await Dog.find();
         const pagination = paginationService.pagination(dogs,data.pag,12);
-        const finalResult = await makeImgService.makeImg(pagination.dogs, fullUrl)
+        const finalResult = await makeImgService.makeImg(pagination, fullUrl)
         return finalResult;
     }
 
@@ -77,12 +77,11 @@ class DogRepository{
         return retorno;
     }
 
-    async getById(id, fullUrl){
+    async getById(id){
         const dog = await Dog.findOne({
             _id: id
         },"_id _idUser nome sexo idade raca descricao city state linkImg");
-        const finalResult = await makeImgService.makeImg(dog, fullUrl)
-        return finalResult;
+        return dog;
     } 
 
     async getDogByDono(data, fullUrl){
@@ -95,7 +94,7 @@ class DogRepository{
             }
         }
         const pagination = paginationService.pagination(dogs,data.pag,9);
-        const finalResult = await makeImgService.makeImg(pagination.dogs, fullUrl)
+        const finalResult = await makeImgService.makeImg(pagination, fullUrl)
         return finalResult;
     }
     async getAllDogsByDono(data){

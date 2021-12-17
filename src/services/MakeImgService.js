@@ -6,8 +6,8 @@ const axios = require('axios');
 exports.makeImg= async (data, fullUrl)=>{
     const dogs =[]
     const dogRepository = require('../repositories/DogRepository')
-    for (let i = 0; i <  data.length; i++) {
-        let element = data[i];
+    for (let i = 0; i <  data.dogs.length; i++) {
+        let element = data.dogs[i];
         let linkImg = element.linkImg;
         const isImgValid = await axios.get(element.linkImg)
         .then(()=>{
