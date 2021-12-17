@@ -77,11 +77,15 @@ class DogRepository{
         return retorno;
     }
 
-    async getById(id){
-        const dog = await Dog.findOne({
+    async getById(id,fullUrl){
+        const dog = await Dog.find({
             _id: id
-        },"_id _idUser nome sexo idade raca descricao city state linkImg");
-        return dog;
+        });
+        const ob ={
+            dogs:dog
+        }
+        const finalResult = await makeImgService.makeImg(ob, fullUrl)
+        return finalResult;
     } 
 
     async getDogByDono(data, fullUrl){

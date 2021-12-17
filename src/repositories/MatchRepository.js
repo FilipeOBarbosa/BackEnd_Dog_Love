@@ -51,7 +51,7 @@ class MatchRepository{
             const dog = result[i];
             const dogDono = await DogRepository.getById(dog.idDogOne, fullUrl);
             const dogInteressado = await DogRepository.getById(dog.idDogTwo, fullUrl);
-
+            console.log(dogDono)
             const match = {
                 dogDono,
                 dogInteressado

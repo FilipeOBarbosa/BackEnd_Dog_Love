@@ -4,6 +4,7 @@ const dir = path.resolve(__dirname,'..','..','public','dogs');
 const axios = require('axios');
 
 exports.makeImg= async (data, fullUrl)=>{
+    
     const dogs =[]
     const dogRepository = require('../repositories/DogRepository')
     for (let i = 0; i <  data.dogs.length; i++) {
@@ -48,9 +49,10 @@ exports.makeImg= async (data, fullUrl)=>{
             linkImg: linkImg
         }
         dogs.push(object);
-        
+        console.log(object)   
     }
     data['dogs'] = dogs;
+
 
     return data
 }
