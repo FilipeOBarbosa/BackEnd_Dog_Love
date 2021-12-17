@@ -16,7 +16,6 @@ class MatchRepository{
             idDogOne,
             idUserTwo,
             idDogTwo,
-            emailUser
         } = data;
         
         const newMatch = new Match({
@@ -25,7 +24,6 @@ class MatchRepository{
             idDogOne,
             idUserTwo,
             idDogTwo,
-            emailUser
         });
         try{
             await newMatch.save();
@@ -53,7 +51,6 @@ class MatchRepository{
                 dogDono:dogDono,
                 dogInteressado:dogInteressado,
                 id: dog._id,
-                emailUser: result.emailUser
             }
             dogs.push(match)
         }
