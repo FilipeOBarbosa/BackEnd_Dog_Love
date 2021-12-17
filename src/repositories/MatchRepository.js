@@ -41,11 +41,6 @@ class MatchRepository{
             idUserOne: id
         })
 
-        if(result.length===0){
-            result = await Match.find({
-                idUserTwo: id
-            });
-        }
         let dogs = []
         for (let i = 0; i < result.length; i++) {
             const dog = result[i];
