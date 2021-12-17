@@ -19,8 +19,12 @@ class DogController{
     }
 
     async getById(request, response){
-        const result = await repository.findById(request.body.id)
-        return response.status(200).json(result); 
+        const {id} = request.query;
+        if(!id){
+            return response.status(400).json({message: "digite um id"}); 
+        }
+        const result = await repository.findById(id)
+        return response.status(302).json(result); 
     }
 
 }

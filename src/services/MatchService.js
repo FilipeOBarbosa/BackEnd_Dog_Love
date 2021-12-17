@@ -7,8 +7,11 @@ exports.authorizeMatch = async (request, response, next) =>{
     if(!isEquals){
 
         const isUserValidOne = await isUserValid(match.idUserOne);
+        const isUserValidTwo = await isUserValid(match.idUserTwo);
         const isDogValidOne  = await isDogValid(match.idDogOne);
-        if(isUserValidOne &&isDogValidOne){
+        const isDogValidTwo  = await isDogValid(match.idDogTwo);
+        if(isUserValidOne && isUserValidTwo &&
+            isDogValidOne && isDogValidTwo){
                 log('MatchService/authorizeMatch','Passou', true)
                 next()
         }else{
