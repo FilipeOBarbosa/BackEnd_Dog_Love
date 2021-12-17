@@ -47,6 +47,10 @@ const dogSchema = new mongoose.Schema({
     linkImg:{
         type:String,
         required:false
+    },
+    emailDono:{
+        type:String,
+        required:true
     }
 });
 module.exports = mongoose.model("Dog", dogSchema);

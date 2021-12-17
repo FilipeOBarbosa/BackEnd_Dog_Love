@@ -21,7 +21,8 @@ class DogRepository{
             raca,
             descricao,
             city,
-            state
+            state,
+            emailDono
         } = data.data;
     
         const newDog = new Dog({
@@ -36,7 +37,8 @@ class DogRepository{
             state,
             img,
             imgContentType,
-            linkImg
+            linkImg,
+            emailDono
         });
         try{
             await newDog.save();
