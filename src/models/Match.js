@@ -25,6 +25,10 @@ const dogSchema = new mongoose.Schema({
         type:String,
         default: null,
         required: false
+    },
+    emailUser:{
+        type:String,
+        required: true
     }
 
    
