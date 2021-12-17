@@ -18,10 +18,12 @@ const dogSchema = new mongoose.Schema({
 
     idUserTwo:{
         type:String,
-        required: false 
+        default: null,
+        required: false
     },
     idDogTwo:{
         type:String,
+        default: null,
         required: false
     }
 
