@@ -49,7 +49,6 @@ exports.makeImg= async (data, fullUrl)=>{
             linkImg: linkImg
         }
         dogs.push(object);
-        console.log(object)   
     }
     data['dogs'] = dogs;
 
