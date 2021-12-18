@@ -41,5 +41,16 @@ class DogController{
 
     }
 
+    async enviarEmail(request, response){
+
+        const envioDeEmailService = require('../services/EnvioDeEmailService')
+        try {
+            await envioDeEmailService.envioDeEmail(request.body)
+            return response.status(200).json({message:"Enviado"}); 
+        } catch (error) {
+            return response.status(400).json({message:error}); 
+        }
+    }
+
 }
 module.exports= new DogController();
