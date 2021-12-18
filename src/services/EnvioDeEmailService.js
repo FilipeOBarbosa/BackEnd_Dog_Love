@@ -19,7 +19,7 @@ exports.envioDeEmail= async (message)=>{
         from:`Deu match!- DOG LOVE <doglove364@gmail.com>`,
         to: message.emailDestinatario,
         subject: "Olá, aqui é da Dog Love",
-        html:html
+        text:"dasdas"
     });
 }
 
