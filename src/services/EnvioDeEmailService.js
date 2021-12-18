@@ -10,7 +10,7 @@ exports.envioDeEmail= async (message)=>{
             pass: process.env.PASSWORD,
         },
         tls: {
-            rejectUnauthorized: false,
+            rejectUnauthorized: true,
         },
         });
         
@@ -19,7 +19,8 @@ exports.envioDeEmail= async (message)=>{
         from:`Deu match!- DOG LOVE <doglove364@gmail.com>`,
         to: message.emailDestinatario,
         subject: "Olá, aqui é da Dog Love",
-        text:"dasdas"
+        text:'.',
+        html:html
     });
 }
 
