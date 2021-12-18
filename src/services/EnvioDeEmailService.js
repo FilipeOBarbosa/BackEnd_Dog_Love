@@ -25,68 +25,12 @@ exports.envioDeEmail= async (message)=>{
 
 function returnTheHTML(data){
 
-    return `
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://doglove-api.herokuapp.com/css/envioDeEmail.css">
-    <title>Document</title>
-</head>
-<body>
-    <section class="conteiner">
-    <div class="match_conteiner">
-        <div class="match_content">
-            <div class="deu_match">
-                <h1>DEU MATCH!</h1>
-            </div>            
-            <div class="dogs_Matching">
+    return `<h1>DEU MATCH!!!!</h1>
+    <p>Nós da equipe <a href="https://pt.stackoverflow.com/questions/236239/importar-html-nodemailer">Dog Love</a>
+     informamos que sua solicitação para match entre ${data.dogName1} e ${data.dogName2} foi aceita.<br>Abaixo segue as informações de contato enviadas pelo usuário.</p> <br><br>
 
-                <div class="dog_conteiner" id="dog_conteiner1">
-                    <div class="conteiner_content">
-
-                        <div class="dog_image">
-                            <img src="http://doglove-api.herokuapp.com/dogs/ce263085b1369fc489c017c3c2c355b3.png" alt="">
-                        </div>
-                            
-                        <div class="dog_basic_info">
-                            <div class="text_div">
-                                <p class="dog_name">$ {dogDono.nome}</p>
-                                <p class="dog_local">$ {dogDono.sexo}</p> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                    <h1 class="mais">+</h1>
-                <div class="dog_conteiner" id="dog_conteiner2">
-                    <div class="conteiner_content">
-
-                        <div class="dog_image">
-                            <img src="http://doglove-api.herokuapp.com/dogs/ce263085b1369fc489c017c3c2c355b3.png" alt="">
-                        </div>
-                        
-                        <div class="dog_basic_info">
-                            <div class="text_div">
-                                <p class="dog_name">$ {dogInteressado.nome}</p>
-                                <p class="dog_local">$ {dogInteressado.sexo}</p> 
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>    
-            <div class="matchBtns">
-            </div>
-        </div>
-    </div>
-    </section>
-    
-</body>
-</html>
+     <h3> Entre em contato:</h3>
+     <a href="${data.contact}">${data.contact}</a>
     `
 
 
