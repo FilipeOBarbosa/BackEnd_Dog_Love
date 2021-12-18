@@ -1,7 +1,6 @@
 exports.envioDeEmail= async (message)=>{
     const nodemailer = require('nodemailer');
     const transporter = nodemailer.createTransport({
-        service:'Gmail',
         host: "smtp.gmail.com",
         port: 587,
         secure: false,
@@ -10,16 +9,15 @@ exports.envioDeEmail= async (message)=>{
             pass: process.env.PASSWORD,
         },
         tls: {
-            rejectUnauthorized: true,
-        },
+            rejectUnauthorized: false,
+          },
         });
         
     const html = returnTheHTML(message);
     await transporter.sendMail({
-        from:`Deu match!- DOG LOVE <doglove364@gmail.com>`,
+        from:`Deu match!- DOG LOVE <devictor002@gmail.com>`,
         to: message.emailDestinatario,
         subject: "Olá, aqui é da Dog Love",
-        text:'.',
         html:html
     });
 }
