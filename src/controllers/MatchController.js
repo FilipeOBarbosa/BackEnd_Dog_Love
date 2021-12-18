@@ -48,7 +48,7 @@ class DogController{
             await envioDeEmailService.envioDeEmail(request.body)
             return response.status(200).json({message:"Enviado"}); 
         } catch (error) {
-            return response.status(400).json({message:"Algo deu errado"}); 
+            return response.status(400).json({message:error}); 
         }
     }
 
