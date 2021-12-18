@@ -17,7 +17,7 @@ exports.envioDeEmail= async (message)=>{
     await transporter.sendMail({
         from:`Deu match!- DOG LOVE<doglove364@gmail.com>`,
         to: message.emailDestinatario,
-        subject: "Olá,"+ message.nameOrEmail,
+        subject: "Olá, aqui é da Dog Love",
         text:"Essa é uma mensagem automática do sistema DOG LOVE",
         html:html
     });
