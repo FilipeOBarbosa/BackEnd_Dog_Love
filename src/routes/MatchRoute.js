@@ -6,6 +6,7 @@ const matchService = require('../services/MatchService')
 
 class DogRoute{
     constructor(){
+        router.post('/enviar-email', authService.authorize, controller.enviarEmail)
         router.delete('/',authService.authorize,controller.deleteById)
         router.post('/',authService.authorize,matchService.authorizeMatch,controller.post)
         router.get('/get-by-id',authService.authorize, controller.getById);
