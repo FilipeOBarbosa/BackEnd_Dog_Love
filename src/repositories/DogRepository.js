@@ -128,6 +128,17 @@ class DogRepository{
         }
 
     }
-    
+    async filterByState(data, fullUrl){
+        const dogs = await Dog.find({
+            state: data.state
+        });
+        if(dogs.length === 0){
+            return []
+        }
+
+        const pagination = paginationService.pagination(dogs,data.pag,12);
+        const finalResult = await makeImgService.makeImg(pagination, fullUrl)
+        return finalResult;
+    }
 }
 module.exports = new DogRepository();

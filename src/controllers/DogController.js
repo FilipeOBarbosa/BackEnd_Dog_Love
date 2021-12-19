@@ -124,5 +124,21 @@ class DogController{
         return response.status(404).json({message:'Nada encontrado'})
     }
 
+    async filterByState(request, response){
+        const { state, pag } = request.query;
+
+        if(!state || !pag){
+            return response.status(400).json({message: "Informe um estado e uma página"})
+        }
+        const fullUrl = request.protocol + '://' + request.get('Host');
+
+        const result = await repository.filterByState(request.query,fullUrl)
+        if(result.length===0){
+
+            return response.status(404).json({message: "Nenhum dog encontrado"})
+        }
+        return response.status(302).json(result)
+    }
+
 }
 module.exports= new DogController();

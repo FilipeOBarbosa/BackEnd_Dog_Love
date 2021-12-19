@@ -120,37 +120,6 @@ class UserController{
 
     }
 
-    async filterByState(request, response){
-        const { state } = request.query;
-
-        if(!state){
-            return response.status(400).json({message: "Informe um estado"})
-        }
-
-        const result = await repository.filterByState(state)
-        if(result.length===0){
-
-            return response.status(404).json({message: "Nenhum dog encontrado"})
-        }
-
-        return response.status(302).json(result)
-    }
-    async filterByCity(request, response){
-        const {city} = request.query;
-
-        if(!city){
-            return response.status(400).json({message: "Informe uma cidade"})
-        }
-
-        const result = await repository.filterByCity(city)
-        if(result.length===0){
-
-            return response.status(404).json({message: "Nenhum dog encontrado"})
-        }
-
-        return response.status(302).json(result)
-    }
-
 }
 
 module.exports= new UserController();

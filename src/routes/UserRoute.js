@@ -13,8 +13,6 @@ class UserRoute{
         router.post('/login',controller.login);
         router.post('/refresh-token', controller.refreshToken);
         router.get('/validate-token', controller.validateToken);
-        router.get('/filter-by-state',authService.authorize, controller.filterByState);
-        router.get('/filter-by-city',authService.authorize, controller.filterByCity);
         router.put('/',authService.authorize, controller.updateUser);
     }
 

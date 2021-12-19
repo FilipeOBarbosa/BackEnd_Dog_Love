@@ -2,7 +2,6 @@ const {v4: uuid} = require('uuid');
 const User = require('../models/User')
 const vcsl = require('vcsl')
 const tokenService = require('../services/TokenService')
-const filterService = require('../services/FilterService')
 
 const log = require('../services/LogService')
 
@@ -133,31 +132,7 @@ class UserRepository{
 
     }
 
-    async filterByState(stateParam){
-        const users = await User.find({
-            state: stateParam
-        });
-        if(users.length === 0){
-            return []
-        }
-        const dogs  = await filterService.filter(users);
-        return dogs;
-    }
 
-    
-
-    async filterByCity(cityParam){
-        const users = await User.find({
-            city: cityParam
-        });
-        if(users.length === 0){
-            return []
-        }
-        const dogs = await filterService.filter(users);
-
-        return dogs
-
-    }
 }
 
 module.exports = new UserRepository();
