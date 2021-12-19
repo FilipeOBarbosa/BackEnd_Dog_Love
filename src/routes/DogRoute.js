@@ -14,6 +14,7 @@ class DogRoute{
         router.get('/get-by-dono',authService.authorize, controller.getDogByDono)
         router.get('/',authService.authorize, controller.get);
         router.delete('/',authService.authorize, controller.delete);
+        router.get('/filter-by-state',authService.authorize, controller.filterByState);
         router.put('/',authService.authorize, controller.put);
     }
     getRouter(){
